@@ -209,6 +209,10 @@
     (setq flycheck-javascript-eslint-executable eslintd-fix-executable))
   (add-hook 'eslintd-fix-mode-hook #'+javascript|set-flycheck-executable-to-eslint))
 
+(def-package! lsp-typescript
+  :when (featurep! +lsp)
+  :when (featurep! :tools lsp)
+  :hook ((js2-mode typescript-mode) . lsp-typescript-enable))
 
 ;; `skewer-mode'
 (map! (:after skewer-mode

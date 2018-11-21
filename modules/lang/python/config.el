@@ -6,6 +6,8 @@
 (defvar-local +python--version nil
   "The python version in the current buffer.")
 
+;; Sub-modules
+(if (featurep! +lsp)  (load! "+lsp"))
 
 ;;
 ;; Packages
@@ -109,14 +111,6 @@
         :n "A" #'nosetests-pdb-all
         :n "O" #'nosetests-pdb-one
         :n "V" #'nosetests-pdb-module))
-
-
-(when (featurep! +lsp)
-  (after! python
-    (lsp-define-stdio-client lsp-python "python"
-                             #'projectile-project-root
-                             '("pyls"))
-    (add-hook! python-mode #'lsp-python-enable)))
 
 ;;
 ;; Environment management

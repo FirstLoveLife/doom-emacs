@@ -10,7 +10,6 @@
   (package! flycheck-rust))
 
 (cond ((and (depends-on! :tools lsp)
-            (featurep! +lsp))
-       (package! lsp-rust))
+            (featurep! +lsp)))
       ((when (featurep! :completion company)
          (package! company-racer))))
